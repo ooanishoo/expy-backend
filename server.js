@@ -1,6 +1,7 @@
 // Call in installed dependencies
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
 // set up express app
@@ -10,6 +11,14 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+const uri = process.env.ATLAS_URI;
+
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log("MongoDB database connection established successfully");
+})
 
 // set up home route
 app.get('/', (request, respond) => {
