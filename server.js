@@ -14,7 +14,7 @@ app.use(express.json());
 // set up home route
 app.get('/', (request, respond) => {
   respond.status(200).json({
-    message: 'Welcome to Project Support',
+    message: 'Welcome to Expy Server',
   });
 });
 
